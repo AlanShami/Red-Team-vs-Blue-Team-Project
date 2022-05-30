@@ -393,7 +393,7 @@ A reverse shell in webdav was used 20 times.
 
 
 
-![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/blue1.PNG)
+![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/blue1.png)
 
 ![alt-text](https://github.com/AlanShami/Red-Team-vs-Blue-Team-Project/blob/main/Pics/blue2.PNG)
 
